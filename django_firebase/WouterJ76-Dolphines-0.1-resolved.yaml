@@ -1,0 +1,65 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: "0.1"
+servers:
+- url: http://127.0.0.1:7000
+paths:
+  /dolphins/7/:
+    delete:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:7000
+    servers:
+    - url: http://127.0.0.1:7000
+  /dolphins/1/:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:7000
+    servers:
+    - url: http://127.0.0.1:7000
+  /dolphins/:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:7000
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            examples:
+              "0":
+                value: "{\n    \"name\": \"pengu\",\n    \"color\": \"green\",\n\t\"age\":\"12\"\n}"
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:7000
+    servers:
+    - url: http://127.0.0.1:7000
+components:
+  schemas:
+    body:
+      type: object
+      properties:
+        color:
+          type: string
+        name:
+          type: string
+        age:
+          type: string
