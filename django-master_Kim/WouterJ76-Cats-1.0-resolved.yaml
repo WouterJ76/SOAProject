@@ -1,0 +1,64 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: "1.0"
+servers:
+- url: http://127.0.0.1:8000
+paths:
+  /cats/:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:8000
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            examples:
+              "0":
+                value: |-
+                  {
+                      "name": "pengu",
+                      "characteristics": "albino Pinguin Cat"
+                  }
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:8000
+    servers:
+    - url: http://127.0.0.1:8000
+  /cats/1/:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:8000
+    delete:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://127.0.0.1:8000
+    servers:
+    - url: http://127.0.0.1:8000
+components:
+  schemas:
+    body:
+      type: object
+      properties:
+        characteristics:
+          type: string
+        name:
+          type: string
