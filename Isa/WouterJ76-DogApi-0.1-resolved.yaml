@@ -1,0 +1,104 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: "0.1"
+servers:
+- url: http://localhost:8080
+paths:
+  /adddog:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            examples:
+              "0":
+                value: |-
+                  {
+                  "name": "jef",
+                  "breed": "ja"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html;charset=UTF-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+      - url: http://localhost:8080
+    servers:
+    - url: http://localhost:8080
+  /delete/0:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html;charset=UTF-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+      - url: http://localhost:8080
+    servers:
+    - url: http://localhost:8080
+  /:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: http://localhost:8080
+    servers:
+    - url: http://localhost:8080
+  /update/1:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_1'
+            examples:
+              "0":
+                value: |-
+                  {
+                  "name": "jef123",
+                  "breed": "jaja"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html;charset=UTF-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+      - url: http://localhost:8080
+    servers:
+    - url: http://localhost:8080
+components:
+  schemas:
+    body:
+      type: object
+      properties:
+        name:
+          type: string
+        breed:
+          type: string
+    body_1:
+      type: object
+      properties:
+        name:
+          type: string
+        breed:
+          type: string
