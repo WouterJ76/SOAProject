@@ -7,7 +7,8 @@ python -m venv env
 env\Scripts\activate
 pip install django
 pip install djangorestframework
-cd project
+pip install django-rest-swagger
+cd django_firebase
 python manage.py migrate
 python manage.py runserver
 ```
