@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 <header>
@@ -56,25 +57,47 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Sirius</td>
-                                    <td>Serious Dog</td>
-                                    <th><a class="btn btn-primary btn-light" href="addDog.html">Adopt</a></th>
-                                    <th><a class="btn btn-primary btn-light" href="editDog.html">Rename</a></th>
-                                </tr>
-                                <tr>
-                                    <td>Spot</td>
-                                    <td>Spotted Dog</td>
-                                    <th><a class="btn btn-primary btn-light" href="addDog.html">Adopt</a></th>
-                                    <th><a class="btn btn-primary btn-light" href="editDog.html">Rename</a></th>
-                                </tr>
-                                <tr>
-                                    <td>Pepper</td>
-                                    <td>Spicy Dog</td>
-                                    <th><a class="btn btn-primary btn-light" href="addDog.html">Adopt</a></th>
-                                    <th><a class="btn btn-primary btn-light" href="editDog.html">Rename</a></th>
-                                </tr>
+                            <tbody id="myData">
+                                <script>
+                                    $.ajax({
+                                        url: 'https://localhost:8243/dogs/1.0/',
+                                        dataType: 'json',
+                                        beforeSend: function(xhr) {
+                                            // xhr.setRequestHeader("Authorization", "Bearer eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlBoaENIbzJPbW9mZmxXQ1pFVVNyTzk1cW1oVWEiLCJuYmYiOjE2MjI0OTM2NTksImF6cCI6IlBoaENIbzJPbW9mZmxXQ1pFVVNyTzk1cW1oVWEiLCJzY29wZSI6ImFtX2FwcGxpY2F0aW9uX3Njb3BlIGRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2MjI0OTcyNTksImlhdCI6MTYyMjQ5MzY1OSwianRpIjoiYjFhYjM2ZTgtNDNiYy00YmI2LWJlZDYtNTY2ZmUxNmUyMDM0In0.YvYgWt4fIQ4IL3GQn6KjVRt5ogw92E4MqqReGBxwel2p0kY_az0MDK51bMmNmq6vK5qjhmvn8l5mRfVGAC6HRc0Avch8pM-rz3AFWQC-Ii1-rdybzAtOsFQ-5-YtVKsnZSYy6JotBwJXrjNpIKTXC7058KyclLdR2bsxFHI6FZSttNpuWH1TLDyARaDg0PDl4A-0lK5Hoe9m6uRQp7mfhgGBbJ6MbTbjFoF09H58o2bYE3k1g0b-ivgdqNMPL9DMBsHU_0wlM5zno6lE0fGShs6wo6eKf21nro34PlqP9deCO38rwVWpwi8SLJde7PorkH_RrLu02CfU2bDqvHTJYg")
+                                            xhr.setRequestHeader("apikey", "eyJ4NXQiOiJOVGRtWmpNNFpEazNOalkwWXpjNU1tWm1PRGd3TVRFM01XWXdOREU1TVdSbFpEZzROemM0WkE9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhcHBsaWNhdGlvbiI6eyJvd25lciI6ImFkbWluIiwidGllclF1b3RhVHlwZSI6bnVsbCwidGllciI6IlVubGltaXRlZCIsIm5hbWUiOiJEZWZhdWx0QXBwbGljYXRpb24iLCJpZCI6MSwidXVpZCI6ImUxNjI2OTljLWUxYzMtNGQyMy05OGUxLTE0YmIxYjViMzhlNCJ9LCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJ0aWVySW5mbyI6eyJCcm9uemUiOnsidGllclF1b3RhVHlwZSI6InJlcXVlc3RDb3VudCIsImdyYXBoUUxNYXhDb21wbGV4aXR5IjowLCJncmFwaFFMTWF4RGVwdGgiOjAsInN0b3BPblF1b3RhUmVhY2giOnRydWUsInNwaWtlQXJyZXN0TGltaXQiOjAsInNwaWtlQXJyZXN0VW5pdCI6bnVsbH19LCJrZXl0eXBlIjoiU0FOREJPWCIsInBlcm1pdHRlZFJlZmVyZXIiOiIiLCJzdWJzY3JpYmVkQVBJcyI6W3sic3Vic2NyaWJlclRlbmFudERvbWFpbiI6ImNhcmJvbi5zdXBlciIsIm5hbWUiOiJEb2xwaGlucyIsImNvbnRleHQiOiJcL2RvbHBoaW5zXC8xIiwicHVibGlzaGVyIjoiYWRtaW4iLCJ2ZXJzaW9uIjoiMSIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiQ2F0cyIsImNvbnRleHQiOiJcL2NhdHNcLzEuMCIsInB1Ymxpc2hlciI6ImFkbWluIiwidmVyc2lvbiI6IjEuMCIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiRG9ncyIsImNvbnRleHQiOiJcL0RvZ3NcLzAuMSIsInB1Ymxpc2hlciI6ImFkbWluIiwidmVyc2lvbiI6IjAuMSIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifV0sInBlcm1pdHRlZElQIjoiIiwiaWF0IjoxNjIyNDkzMTg2LCJqdGkiOiJmMmUyNzZhMS0yNjc4LTRlMjItYmE2OC0yMzMzYmI0YmNiZmEifQ==.dgfHGNhn6mq8cmgUtT5ypwWZ3QW-M41Dox546ZBRH_5x4COIxVGNfBIMgPOnNAjnFV6a3s3kVOE0H3VVebmmDwHCuj_EdMhjnILWBJIeLzb69Hr6dby2qGpiNPT6zn3CXiD3KfxCf7sZoJhI0CM3myITdParRDDQs7BdV890EOBqJezSV4Ibk6O2RSKZV7rEy6ZDCpAHwn9XfvT8Bg4N54vxH4XADVojhBhKAZi5kjkwqrpNBVBF97EYUzVZ8hCQ-sX0jDYBoqf48DzrY8pzmw_LqDqqj88cIvfww5xRRuASwMK8kTdfcQEDcfUIKiXT2VthPB0rk8PU05YRaUNOVg==")
+                                        }, success: function(data){
+                                            var mainContainer = document.getElementById("myData");
+                                            for (var i = 0; i < data.length; i++) {
+                                                var tr = document.createElement("tr");
+                                                var name = document.createElement("td");
+                                                var char = document.createElement("td");
+                                                var thadd = document.createElement("th");
+                                                var threname = document.createElement("th");
+                                                var add = document.createElement("a");
+                                                var rename = document.createElement("a");
+                                                name.innerHTML = data[i].name;
+                                                char.innerHTML = data[i].characteristics;
+                                                tr.appendChild(name);
+                                                tr.appendChild(char);
+                                                add.innerHTML = "Adopt";
+                                                add.href = "addDog.html";
+                                                add.classList.add('btn');
+                                                add.classList.add('btn-primary');
+                                                add.classList.add('btn-light');
+                                                rename.innerHTML = "Rename";
+                                                rename.href = "editDog.html";
+                                                rename.classList.add('btn');
+                                                rename.classList.add('btn-primary');
+                                                rename.classList.add('btn-light');
+                                                thadd.appendChild(add);
+                                                tr.appendChild(thadd);
+                                                threname.appendChild(rename);
+                                                tr.appendChild(threname);
+                                                mainContainer.appendChild(tr);
+                                            }
+                                        }
+                                    })
+                                </script>
                             </tbody>
                         </table>
                     </div>

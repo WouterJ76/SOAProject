@@ -13,12 +13,64 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+        function getData() {
+        $.ajax({
+            url: 'https://localhost:8243/cats/1.0/cats/',
+            dataType: 'json',
+            beforeSend: function(xhr) {
+                // xhr.setRequestHeader("Authorization", "Bearer eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlBoaENIbzJPbW9mZmxXQ1pFVVNyTzk1cW1oVWEiLCJuYmYiOjE2MjI2MzIzMDAsImF6cCI6IlBoaENIbzJPbW9mZmxXQ1pFVVNyTzk1cW1oVWEiLCJzY29wZSI6ImFtX2FwcGxpY2F0aW9uX3Njb3BlIGRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2MjI2MzU5MDAsImlhdCI6MTYyMjYzMjMwMCwianRpIjoiODE0ZTI3ZTQtNTQ0ZS00ZDk2LTg5MzQtMDA3NjUzMDQ3NzkxIn0.CCYLk7eA3GjcX__NYtBCz59KhrpaP6F9nDfDXAHPuzxPZDJmUhG3L7JvSwTwcI08r9yBiX3kAYQ6W3jDb1PZy5KMc_ASZUkR69BCyQa-ssRHr35sxmH1IbBU3amgyPw7cOq0lM-IRPiOSd-NGa-DT_crsyGayB4zfICGGqZF5xQLq63h3y7lC2PNmC77-FOmS9JgJyVffS-AX-fz3_RI80WiGqgcd1Td-c4tMXfn4GiTF5WsvwmemMr_JOt7jb-Dr9VhC96wZpisjCWFoZ_jpafuuahI5SvDr3jPOdzo25oW50I2URxK0CVISEYpGvYGGzbKUyDtW8v_sZPTEXAP5A")
+                xhr.setRequestHeader("apikey", "eyJ4NXQiOiJOVGRtWmpNNFpEazNOalkwWXpjNU1tWm1PRGd3TVRFM01XWXdOREU1TVdSbFpEZzROemM0WkE9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhcHBsaWNhdGlvbiI6eyJvd25lciI6ImFkbWluIiwidGllclF1b3RhVHlwZSI6bnVsbCwidGllciI6IlVubGltaXRlZCIsIm5hbWUiOiJEZWZhdWx0QXBwbGljYXRpb24iLCJpZCI6MSwidXVpZCI6ImUxNjI2OTljLWUxYzMtNGQyMy05OGUxLTE0YmIxYjViMzhlNCJ9LCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJ0aWVySW5mbyI6eyJCcm9uemUiOnsidGllclF1b3RhVHlwZSI6InJlcXVlc3RDb3VudCIsImdyYXBoUUxNYXhDb21wbGV4aXR5IjowLCJncmFwaFFMTWF4RGVwdGgiOjAsInN0b3BPblF1b3RhUmVhY2giOnRydWUsInNwaWtlQXJyZXN0TGltaXQiOjAsInNwaWtlQXJyZXN0VW5pdCI6bnVsbH19LCJrZXl0eXBlIjoiU0FOREJPWCIsInBlcm1pdHRlZFJlZmVyZXIiOiIiLCJzdWJzY3JpYmVkQVBJcyI6W3sic3Vic2NyaWJlclRlbmFudERvbWFpbiI6ImNhcmJvbi5zdXBlciIsIm5hbWUiOiJEb2xwaGlucyIsImNvbnRleHQiOiJcL2RvbHBoaW5zXC8xIiwicHVibGlzaGVyIjoiYWRtaW4iLCJ2ZXJzaW9uIjoiMSIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiQ2F0cyIsImNvbnRleHQiOiJcL2NhdHNcLzEuMCIsInB1Ymxpc2hlciI6ImFkbWluIiwidmVyc2lvbiI6IjEuMCIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiRG9ncyIsImNvbnRleHQiOiJcL2RvZ3NcLzEuMCIsInB1Ymxpc2hlciI6ImFkbWluIiwidmVyc2lvbiI6IjEuMCIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifV0sInBlcm1pdHRlZElQIjoiIiwiaWF0IjoxNjIyNjMyNTQxLCJqdGkiOiI0ZWQzY2U4ZC0yZGZjLTQ2NzYtYWMyMi04ZjJmYjg1YjAzM2QifQ==.AX0WZlIxdoZVS-WmqKpnl48KBiw0CuNnYxm47R9XQKnNKs02RpszCG25jCRkdn3XjYW1yJbsYI8zi4w05oCMH6_gSwGoW3NLLotDC8X7ePPR92cY4peSUUc2g9CXIgR5VaXGT3dttSjBCfwgs63ehVjeacR3YogG6AEbFTdzM5FaTxzMNdcni5hExV-JZuEkxQWZVyIoKJr3smH5ihpbNLP4F-QA597mBjHQ7xR3Y4rvU3cYdvluSsyS_JiI7mGVVxJvie5SSWd7s_mwpCqxcNegXRRuTmNWK0-ad4FbJO-P49g3435177bvhbiMWPOHX_DQoU_aF81gRvGAIA6qxQ==")
+            }, success: function(data){
+                var mainContainer = document.getElementById("myData");
+                for (var i = 0; i < data.length; i++) {
+                    var tr = document.createElement("tr");
+                    var name = document.createElement("td");
+                    var char = document.createElement("td");
+                    var thadopt = document.createElement("th");
+                    var threname = document.createElement("th");
+                    var adopt = document.createElement("a");
+                    var rename = document.createElement("a");
+                    name.innerHTML = data[i].name;
+                    char.innerHTML = data[i].characteristics;
+                    tr.appendChild(name);
+                    tr.appendChild(char);
+                    adopt.innerHTML = "Adopt";
+                    adopt.onclick = function remove() {
+                                        $.ajax({
+                                            type: "DELETE",
+                                            url: 'https://localhost:8243/cats/1.0/cats/'+ i +'/',
+                                            beforeSend: function(xhr) {
+                                                // xhr.setRequestHeader("Authorization", "Bearer eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlBoaENIbzJPbW9mZmxXQ1pFVVNyTzk1cW1oVWEiLCJuYmYiOjE2MjI2MzIzMDAsImF6cCI6IlBoaENIbzJPbW9mZmxXQ1pFVVNyTzk1cW1oVWEiLCJzY29wZSI6ImFtX2FwcGxpY2F0aW9uX3Njb3BlIGRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2MjI2MzU5MDAsImlhdCI6MTYyMjYzMjMwMCwianRpIjoiODE0ZTI3ZTQtNTQ0ZS00ZDk2LTg5MzQtMDA3NjUzMDQ3NzkxIn0.CCYLk7eA3GjcX__NYtBCz59KhrpaP6F9nDfDXAHPuzxPZDJmUhG3L7JvSwTwcI08r9yBiX3kAYQ6W3jDb1PZy5KMc_ASZUkR69BCyQa-ssRHr35sxmH1IbBU3amgyPw7cOq0lM-IRPiOSd-NGa-DT_crsyGayB4zfICGGqZF5xQLq63h3y7lC2PNmC77-FOmS9JgJyVffS-AX-fz3_RI80WiGqgcd1Td-c4tMXfn4GiTF5WsvwmemMr_JOt7jb-Dr9VhC96wZpisjCWFoZ_jpafuuahI5SvDr3jPOdzo25oW50I2URxK0CVISEYpGvYGGzbKUyDtW8v_sZPTEXAP5A")
+                                                xhr.setRequestHeader("apikey", "eyJ4NXQiOiJOVGRtWmpNNFpEazNOalkwWXpjNU1tWm1PRGd3TVRFM01XWXdOREU1TVdSbFpEZzROemM0WkE9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhcHBsaWNhdGlvbiI6eyJvd25lciI6ImFkbWluIiwidGllclF1b3RhVHlwZSI6bnVsbCwidGllciI6IlVubGltaXRlZCIsIm5hbWUiOiJEZWZhdWx0QXBwbGljYXRpb24iLCJpZCI6MSwidXVpZCI6ImUxNjI2OTljLWUxYzMtNGQyMy05OGUxLTE0YmIxYjViMzhlNCJ9LCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJ0aWVySW5mbyI6eyJCcm9uemUiOnsidGllclF1b3RhVHlwZSI6InJlcXVlc3RDb3VudCIsImdyYXBoUUxNYXhDb21wbGV4aXR5IjowLCJncmFwaFFMTWF4RGVwdGgiOjAsInN0b3BPblF1b3RhUmVhY2giOnRydWUsInNwaWtlQXJyZXN0TGltaXQiOjAsInNwaWtlQXJyZXN0VW5pdCI6bnVsbH19LCJrZXl0eXBlIjoiU0FOREJPWCIsInBlcm1pdHRlZFJlZmVyZXIiOiIiLCJzdWJzY3JpYmVkQVBJcyI6W3sic3Vic2NyaWJlclRlbmFudERvbWFpbiI6ImNhcmJvbi5zdXBlciIsIm5hbWUiOiJEb2xwaGlucyIsImNvbnRleHQiOiJcL2RvbHBoaW5zXC8xIiwicHVibGlzaGVyIjoiYWRtaW4iLCJ2ZXJzaW9uIjoiMSIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiQ2F0cyIsImNvbnRleHQiOiJcL2NhdHNcLzEuMCIsInB1Ymxpc2hlciI6ImFkbWluIiwidmVyc2lvbiI6IjEuMCIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiRG9ncyIsImNvbnRleHQiOiJcL2RvZ3NcLzEuMCIsInB1Ymxpc2hlciI6ImFkbWluIiwidmVyc2lvbiI6IjEuMCIsInN1YnNjcmlwdGlvblRpZXIiOiJCcm9uemUifV0sInBlcm1pdHRlZElQIjoiIiwiaWF0IjoxNjIyNjMyNTQxLCJqdGkiOiI0ZWQzY2U4ZC0yZGZjLTQ2NzYtYWMyMi04ZjJmYjg1YjAzM2QifQ==.AX0WZlIxdoZVS-WmqKpnl48KBiw0CuNnYxm47R9XQKnNKs02RpszCG25jCRkdn3XjYW1yJbsYI8zi4w05oCMH6_gSwGoW3NLLotDC8X7ePPR92cY4peSUUc2g9CXIgR5VaXGT3dttSjBCfwgs63ehVjeacR3YogG6AEbFTdzM5FaTxzMNdcni5hExV-JZuEkxQWZVyIoKJr3smH5ihpbNLP4F-QA597mBjHQ7xR3Y4rvU3cYdvluSsyS_JiI7mGVVxJvie5SSWd7s_mwpCqxcNegXRRuTmNWK0-ad4FbJO-P49g3435177bvhbiMWPOHX_DQoU_aF81gRvGAIA6qxQ==")
+                                            }, success: window.location.href = "cat.html"
+                                        });
+                                    };
+                    adopt.classList.add('btn');
+                    adopt.classList.add('btn-primary');
+                    adopt.classList.add('btn-light');
+                    rename.innerHTML = "Rename";
+                    rename.href = "editDog.html";
+                    rename.classList.add('btn');
+                    rename.classList.add('btn-primary');
+                    rename.classList.add('btn-light');
+                    thadopt.appendChild(adopt);
+                    tr.appendChild(thadopt);
+                    threname.appendChild(rename);
+                    tr.appendChild(threname);
+                    mainContainer.appendChild(tr);
+                }
+            }
+        })
+    }
+    </script>
 </head>
 <body>
 <header>
     <h1 class="site-heading text-center text-faded d-none d-lg-block">
         <span class="site-heading-upper text-primary mb-3">Welcome to</span>
-        <span class="site-heading-lower">Ter Shell</span>
+        <span class="site-heading-lower" id="test">Ter Shell</span>
     </h1>
 </header>
 <!-- Navigation-->
@@ -56,25 +108,10 @@
                                 <th></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>Streep</td>
-                                <td>Striped</td>
-                                <th><a class="btn btn-primary btn-light" href="addDog.html">Adopt</a></th>
-                                <th><a class="btn btn-primary btn-light" href="editDog.html">Rename</a></th>
-                            </tr>
-                            <tr>
-                                <td>Grumpy Cat</td>
-                                <td>Grumpy</td>
-                                <th><a class="btn btn-primary btn-light" href="addDog.html">Adopt</a></th>
-                                <th><a class="btn btn-primary btn-light" href="editDog.html">Rename</a></th>
-                            </tr>
-                            <tr>
-                                <td>Kjewtie</td>
-                                <td>Cute</td>
-                                <th><a class="btn btn-primary btn-light" href="addDog.html">Adopt</a></th>
-                                <th><a class="btn btn-primary btn-light" href="editDog.html">Rename</a></th>
-                            </tr>
+                            <tbody id="myData">
+                                <script>
+                                    getData();
+                                </script>
                             </tbody>
                         </table>
                     </div>
@@ -105,3 +142,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+
