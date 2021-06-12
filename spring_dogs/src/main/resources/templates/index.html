@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${dogs}">
+    <h2 th:case="null">No dogs yet!</h2>
+    <div th:case="*">
+        <h2>Dogs</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Breed</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dog : ${dogs}">
+                <td th:text="${dog.name}"></td>
+                <td th:text="${dog.breed}"></td>
+                <td><a th:href="@{/edit/{id}(id=${dog.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${dog.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/newdog">Add a new dog</a></p>
+</div>
+</body>
+</html>
