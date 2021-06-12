@@ -7,6 +7,7 @@ python -m venv env
 env\Scripts\activate
 pip install django
 pip install djangorestframework
+pip install django-cors-headers
 cd project
 python manage.py migrate
 python manage.py runserver
