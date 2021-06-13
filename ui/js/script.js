@@ -2,19 +2,16 @@ let cat_link = 'http://localhost:8000/cats/';
 let cat_param = ["name", "characteristics"];
 var read_cats = () => read(cat_link, cat_param);
 var create_cat = () => create(cat_link, cat_param);
-var update_cat = () => update(cat_link, cat_param);
 
 let dog_link = 'http://localhost:8080/dogs/';
 let dog_param = ["name", "breed"];
 var read_dogs = () => read(dog_link, dog_param);
 var create_dog = () => create(dog_link, dog_param);
-var update_dog = () => update(dog_link, dog_param);
 
 let dolphin_link = 'http://localhost:8001/dolphins/';
 let dolphin_param = ["name", "color", "age"];
 var read_dolphins = () => read(dolphin_link, dolphin_param);
 var create_dolphin = () => create(dolphin_link, dolphin_param);
-var update_dolphin = () => update(dolphin_link, dolphin_link);
 
 var capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 
@@ -100,20 +97,22 @@ function part_form(link, elements) {
     form.method = "POST";
     elements.forEach(elem => {
         var label = document.createElement("label");
-        label.classList.add("form-label");
+        label.classList.add("form-control-label");
         label.htmlFor = elem;
         label.innerHTML = capitalize(elem);
 
         var input = document.createElement("input");
+        input.type = "text";
         input.classList.add("form-text");
+        input.classList.add("form-control");
         input.name = elem;
         input.id = elem;
-        input.type = "text";
 
-        var p = document.createElement("p");
-        p.append(label);
-        p.append(input);
-        form.append(p);
+        var div = document.createElement("div");
+        div.append(label);
+        div.append(input);
+        div.classList.add("form-group");
+        form.append(div);
     });
     return form;
 }
