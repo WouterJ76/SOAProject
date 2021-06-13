@@ -39,8 +39,9 @@ public class DogApiController{
 
     @PutMapping({"/{dogId}"})
     public ResponseEntity<Dog> updateDog(@PathVariable("dogId") int dogId, @RequestBody Dog dog) {
+        dog.setId(dogId);
         dogService.updateDog(dog);
-        return new ResponseEntity<>(dogService.getDog(dogId), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping({"/{dogId}"})

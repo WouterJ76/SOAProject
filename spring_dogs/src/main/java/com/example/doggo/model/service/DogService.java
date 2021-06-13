@@ -5,6 +5,7 @@ import com.example.doggo.model.repository.DogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DogService {
@@ -19,7 +20,8 @@ public class DogService {
     }
 
     public Dog getDog(int id) {
-        return dogRepository.getOne(id);
+        Optional<Dog> optionalDogFromDb = dogRepository.findById(id);
+        return optionalDogFromDb.orElseGet(Dog::new);
     }
 
     public Dog addDog(Dog dog) {
@@ -28,11 +30,10 @@ public class DogService {
     }
 
     public void updateDog(Dog dog) {
-        for (Dog d : getDogs()) {
-            if (d.getId() == dog.getId()) {
-                dogRepository.save(dog);
-            }
-        }
+        Dog dogFromDb = getDog(dog.getId());
+        dogFromDb.setName(dog.getName());
+        dogFromDb.setBreed(dog.getBreed());
+        dogRepository.save(dogFromDb);
     }
 
     public void deleteDog(int dogId) {
