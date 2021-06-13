@@ -1,6 +1,5 @@
 package com.example.doggo.controller;
 
-import com.example.doggo.model.dto.DogDTO;
 import com.example.doggo.model.service.DogService;
 import com.example.doggo.model.domain.Dog;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,7 @@ public class DogController{
     }
 
     @PostMapping("/adddog")
-    public String addDog(@Valid DogDTO dog, BindingResult result, Model model) {
+    public String addDog(@Valid Dog dog, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add-dog";
         }
@@ -47,7 +46,7 @@ public class DogController{
     }
 
     @PostMapping("/update/{id}")
-    public String updateDog(@PathVariable("id") int id, @Valid DogDTO dog,
+    public String updateDog(@PathVariable("id") int id, @Valid Dog dog,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             dog.setId(id);

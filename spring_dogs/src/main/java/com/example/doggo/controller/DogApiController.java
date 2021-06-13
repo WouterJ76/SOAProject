@@ -1,7 +1,6 @@
 package com.example.doggo.controller;
 
 import com.example.doggo.model.domain.Dog;
-import com.example.doggo.model.dto.DogDTO;
 import com.example.doggo.model.service.DogService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,8 +19,8 @@ public class DogApiController{
     }
 
     @GetMapping
-    public ResponseEntity<List<DogDTO>> getAllDogs() {
-        List<DogDTO> dogs = dogService.getDogs();
+    public ResponseEntity<List<Dog>> getAllDogs() {
+        List<Dog> dogs = dogService.getDogs();
         return new ResponseEntity<>(dogs, HttpStatus.OK);
     }
 
@@ -31,7 +30,7 @@ public class DogApiController{
     }
 
     @PostMapping
-    public ResponseEntity<Dog> saveDog(@RequestBody DogDTO dog) {
+    public ResponseEntity<Dog> saveDog(@RequestBody Dog dog) {
         Dog dog1 = dogService.addDog(dog);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("dog", "/dog/" + dog.getId());
@@ -39,7 +38,7 @@ public class DogApiController{
     }
 
     @PutMapping({"/{dogId}"})
-    public ResponseEntity<Dog> updateDog(@PathVariable("dogId") int dogId, @RequestBody DogDTO dog) {
+    public ResponseEntity<Dog> updateDog(@PathVariable("dogId") int dogId, @RequestBody Dog dog) {
         dogService.updateDog(dog);
         return new ResponseEntity<>(dogService.getDog(dogId), HttpStatus.OK);
     }
