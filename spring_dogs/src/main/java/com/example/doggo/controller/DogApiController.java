@@ -1,6 +1,7 @@
 package com.example.doggo.controller;
 
-import com.example.doggo.model.entity.Dog;
+import com.example.doggo.model.domain.Dog;
+import com.example.doggo.model.dto.DogDTO;
 import com.example.doggo.model.service.DogService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,33 +20,33 @@ public class DogApiController{
     }
 
     @GetMapping
-    public ResponseEntity<List<Dog>> getAllDogs() {
-        List<Dog> dogs = dogService.findAll();
+    public ResponseEntity<List<DogDTO>> getAllDogs() {
+        List<DogDTO> dogs = dogService.getDogs();
         return new ResponseEntity<>(dogs, HttpStatus.OK);
     }
 
     @GetMapping({"/{dogId}"})
-    public ResponseEntity<Dog> getDogById(@PathVariable Long dogId) {
-        return new ResponseEntity<>(dogService.findById(dogId), HttpStatus.OK);
+    public ResponseEntity<Dog> getDogById(@PathVariable int dogId) {
+        return new ResponseEntity<>(dogService.getDog(dogId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Dog> saveDog(@RequestBody Dog dog) {
-        Dog dog1 = dogService.save(dog);
+    public ResponseEntity<Dog> saveDog(@RequestBody DogDTO dog) {
+        Dog dog1 = dogService.addDog(dog);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("dog", "/dog/" + dog.getId());
         return new ResponseEntity<>(dog1, httpHeaders, HttpStatus.CREATED);
     }
 
     @PutMapping({"/{dogId}"})
-    public ResponseEntity<Dog> updateDog(@PathVariable("dogId") Long dogId, @RequestBody Dog dog) {
-        dogService.update(dog);
-        return new ResponseEntity<>(dogService.findById(dogId), HttpStatus.OK);
+    public ResponseEntity<Dog> updateDog(@PathVariable("dogId") int dogId, @RequestBody DogDTO dog) {
+        dogService.updateDog(dog);
+        return new ResponseEntity<>(dogService.getDog(dogId), HttpStatus.OK);
     }
 
     @DeleteMapping({"/{dogId}"})
-    public ResponseEntity<Dog> deleteDog(@PathVariable("dogId") Long dogId) {
-        dogService.delete(dogId);
+    public ResponseEntity<Dog> deleteDog(@PathVariable("dogId") int dogId) {
+        dogService.deleteDog(dogId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
