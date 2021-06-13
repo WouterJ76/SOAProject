@@ -15,16 +15,16 @@ public class DogService {
     public DogService() {
     }
 
-    public void save(Dog d){
-        dogs.put(d.getId(), d);
+    public Dog save(Dog d){
+        return dogs.put(d.getId(), d);
     }
     public void update(Dog d){
         dogs.put(d.getId(), d);
     }
-    public void delete(long id){
+    public void delete(Long id){
         dogs.remove(id);
     }
-    public Dog findById(long id){
+    public Dog findById(Long id){
         return dogs.get(id);
     }
     public List<Dog> findAll(){

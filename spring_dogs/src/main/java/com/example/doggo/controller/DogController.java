@@ -10,7 +10,11 @@ import javax.validation.Valid;
 
 @Controller
 public class DogController{
-    DogService dogService = new DogService() ;
+    DogService dogService;
+
+    public DogController(DogService dogService) {
+        this.dogService = dogService;
+    }
 
     @GetMapping("/newdog")
     public String showNewDogForm(Dog dog) {

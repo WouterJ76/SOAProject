@@ -3,16 +3,17 @@ package com.example.doggo.model.service.security;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
-public class CorsConfiguration implements WebMvcConfigurer
-{
+public class CorsConfiguration extends WebMvcConfigurationSupport {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/*")
+        registry.addMapping("/dogs/**")
                 .allowedOrigins("*")
-                .allowedMethods("GET", "PUT", "POST", "DELETE", "HEAD", "OPTIONS", "PATCH");
+                .allowedHeaders("*")
+                .allowedMethods("GET", "PUT", "POST", "DELETE", "HEAD", "OPTIONS", "PATCH")
+                .allowCredentials(false);
     }
 }
