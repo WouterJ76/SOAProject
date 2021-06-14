@@ -150,7 +150,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/index",
+							"raw": "http://127.0.0.1:8080/dogs/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -160,7 +160,8 @@
 							],
 							"port": "8080",
 							"path": [
-								"index"
+								"dogs",
+								""
 							]
 						}
 					},
@@ -174,27 +175,16 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
+								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "snuffles",
-									"type": "text"
-								},
-								{
-									"key": "breed",
-									"value": "fluffy",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Snuffles\",\r\n    \"breed\": \"fluffy\"\r\n}"
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/adddog",
+							"raw": "http://127.0.0.1:8080/dogs/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -204,7 +194,8 @@
 							],
 							"port": "8080",
 							"path": [
-								"adddog"
+								"dogs",
+								""
 							]
 						}
 					},
@@ -212,26 +203,26 @@
 				},
 				{
 					"name": "update dog",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
 					"request": {
-						"method": "POST",
-						"header": [],
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "SnuffelySnuf",
-									"type": "text"
-								},
-								{
-									"key": "breed",
-									"value": "still fluffy",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"SnufflySnuf\",\r\n    \"breed\": \"still fluffy\"\r\n}"
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/update/1/",
+							"raw": "http://127.0.0.1:8080/dogs/1/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -241,7 +232,7 @@
 							],
 							"port": "8080",
 							"path": [
-								"update",
+								"dogs",
 								"1",
 								""
 							]
@@ -252,10 +243,10 @@
 				{
 					"name": "delete dog",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/delete/1/",
+							"raw": "http://127.0.0.1:8080/dogs/1/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -265,7 +256,7 @@
 							],
 							"port": "8080",
 							"path": [
-								"delete",
+								"dogs",
 								"1",
 								""
 							]
