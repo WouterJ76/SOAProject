@@ -2145,6 +2145,10 @@ progress {
   font-size: 0.875rem;
 }
 
+input[type=text] {
+  text-align: center;
+}
+
 .form-group {
   padding-bottom: 1.5rem;
 }
